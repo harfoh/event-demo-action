@@ -1,11 +1,16 @@
 name: Events Demo 1
 on: 
   pull_request:
-    types:
-      - opened
+    types: # this is an activity type i.e the type of activity that triggers the event 
+      - opened # this is one type of activity types. others are closed, edited and so on
   workflow_dispatch:
+  push:
+    branches:
+      - main #the main branch sw
+      - 'dev-*' # any branches that start with dev. e.g. dev-new, dev-old
+      - 'feat/**' # any branches that has feat/ e.g feat/new, feat/old
 jobs:
-  deploy:
+  deploy: # this the name of the job the be executed
     runs-on: ubuntu-latest
     steps:
       - name: Output event data
